@@ -1,6 +1,7 @@
 import Modal from './Modal';
 import Countdown from './Countdown';
 import Timeline from './Timeline';
+import { MAX_GUESSES } from '../constants';
 import type { GuessRecord, SportEvent } from '../types/game';
 
 interface EndGameModalProps {
@@ -14,7 +15,7 @@ interface EndGameModalProps {
   onShare: () => void;
 }
 
-const WIN_HEADLINES = ['LEGENDARY!', 'WORLD CLASS!', 'ALL-STAR!', 'SOLID PLAY!', 'PHOTO FINISH!'];
+const WIN_HEADLINES = ['LEGENDARY!', 'WORLD CLASS!', 'PHOTO FINISH!'];
 
 export default function EndGameModal({
   isOpen,
@@ -26,9 +27,9 @@ export default function EndGameModal({
   displayStreak,
   onShare,
 }: EndGameModalProps) {
-  const headline = won ? WIN_HEADLINES[Math.min(guesses.length, 5) - 1] : 'TIME EXPIRED!';
+  const headline = won ? WIN_HEADLINES[Math.min(guesses.length, MAX_GUESSES) - 1] : 'TIME EXPIRED!';
   const subline = won
-    ? `You nailed puzzle #${puzzleNumber} in ${guesses.length}/${5}${displayStreak > 1 ? ` — that's a ${displayStreak}-day streak 🔥` : '!'}`
+    ? `You nailed puzzle #${puzzleNumber} in ${guesses.length}/${MAX_GUESSES}${displayStreak > 1 ? ` — that's a ${displayStreak}-day streak 🔥` : '!'}`
     : `Puzzle #${puzzleNumber} got away — here's the real timeline.`;
 
   return (

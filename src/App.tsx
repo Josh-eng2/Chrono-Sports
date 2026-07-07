@@ -146,8 +146,8 @@ export default function App() {
         ) : (
           <>
             <p className="text-center text-xs font-semibold uppercase tracking-widest text-neutral-500">
-              Free Play · Round {arcade.stats.gamesPlayed + (arcadeOver ? 0 : 1)} · 🎯{' '}
-              {arcade.stats.totalPoints.toLocaleString('en-US')} pts
+              Free Play · Round {arcade.stats.gamesPlayed + (arcadeOver ? 0 : 1)} · Total points won:{' '}
+              {arcade.stats.totalPoints.toLocaleString('en-US')}
             </p>
             <HistoryGrid guesses={arcade.guesses} />
             <main className="flex flex-col gap-4">

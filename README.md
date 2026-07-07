@@ -1,7 +1,7 @@
 # Chrono-Sort: Sports Edition ⏱️
 
 A Wordle-style web puzzle: drag **5 historic sports moments** into chronological
-order (oldest at the top) in **5 guesses or fewer**. Green = right spot, yellow = one
+order (oldest at the top) in **3 guesses or fewer**. Green = right spot, yellow = one
 spot away, gray = two or more away.
 
 Two ways to play:
@@ -9,8 +9,8 @@ Two ways to play:
 - **📅 Daily** — one shared puzzle per day at local midnight. Build a 🔥 streak and
   share your result grid.
 - **🎯 Free Play** — unlimited rounds, each a fresh random draw of 5 events from the
-  full 150-event pool. Earn **500/400/300/200/100 points** for wins in 1–5 guesses,
-  chase your best win run, and share your score.
+  full event pool. Earn points for each win, watch your **total points** add up, chase
+  your best run, and share your score.
 
 **Status:** v1 complete — playable, tested, ready to deploy.
 

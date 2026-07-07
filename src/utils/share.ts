@@ -5,7 +5,7 @@ import type { GuessRecord } from '../types/game';
  * Spoiler-free share card, e.g.
  *
  *   Chrono-Sort: Sports #12
- *   ⏱️ 3/5 · 🔥4
+ *   ⏱️ 3/3 · 🔥4
  *   🟨🟩⬛⬛🟨
  *   🟩🟩🟨🟨⬛
  *   🟩🟩🟩🟩🟩

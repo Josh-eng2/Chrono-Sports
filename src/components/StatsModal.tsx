@@ -36,7 +36,7 @@ export default function StatsModal({
       ? Math.round((arcadeStats.gamesWon / arcadeStats.gamesPlayed) * 100)
       : 0;
   const arcadeTiles = [
-    { value: arcadeStats.totalPoints.toLocaleString('en-US'), label: 'Points' },
+    { value: arcadeStats.totalPoints.toLocaleString('en-US'), label: 'Points won' },
     { value: arcadeStats.gamesPlayed, label: 'Rounds' },
     { value: `${arcadeWinPct}%`, label: 'Win rate' },
     { value: arcadeStats.bestRun, label: 'Best run' },

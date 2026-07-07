@@ -92,10 +92,8 @@ export function useArcade(): UseArcadeReturn {
   const lastGuess = round.guesses.length > 0 ? round.guesses[round.guesses.length - 1] : null;
   const liveFeedback =
     lastGuess && arraysEqual(round.currentOrder, lastGuess.order) ? lastGuess.feedback : null;
-  const alreadyTried =
-    round.status === 'playing' &&
-    round.guesses.some((g) => arraysEqual(g.order, round.currentOrder));
-  const canSubmit = round.status === 'playing' && !alreadyTried;
+  const alreadyTried = false;
+  const canSubmit = round.status === 'playing';
 
   const reorder = useCallback((newOrder: string[]) => {
     setRound((prev) =>
@@ -105,8 +103,6 @@ export function useArcade(): UseArcadeReturn {
 
   const submitGuess = useCallback(() => {
     if (round.status !== 'playing' || round.guesses.length >= MAX_GUESSES) return;
-    if (round.guesses.some((g) => arraysEqual(g.order, round.currentOrder))) return;
-
     const feedback = evaluateGuess(round.currentOrder, correctOrder);
     const nextGuesses: GuessRecord[] = [
       ...round.guesses,

@@ -1,5 +1,6 @@
 import Modal from './Modal';
 import Timeline from './Timeline';
+import { MAX_GUESSES } from '../constants';
 import type { ArcadeStats, GuessRecord, SportEvent } from '../types/game';
 
 interface ArcadeEndModalProps {
@@ -28,12 +29,12 @@ export default function ArcadeEndModal({
   const headline = won ? `+${pointsEarned} POINTS!` : 'NO POINTS THIS TIME';
   const subline = won
     ? stats.currentRun > 1
-      ? `Solved in ${guesses.length}/5 — that's ${stats.currentRun} wins in a row! 🎯`
-      : `Solved in ${guesses.length}/5. Keep the run going!`
+      ? `Solved in ${guesses.length}/${MAX_GUESSES} — that's ${stats.currentRun} wins in a row! 🎯`
+      : `Solved in ${guesses.length}/${MAX_GUESSES}. Keep the run going!`
     : "The timeline got away — here's how it really went. Free puzzles never run out!";
 
   const tiles = [
-    { value: stats.totalPoints.toLocaleString('en-US'), label: 'Total pts' },
+    { value: stats.totalPoints.toLocaleString('en-US'), label: 'Total points won' },
     { value: stats.gamesPlayed, label: 'Rounds' },
     { value: stats.bestRun, label: 'Best run' },
   ];
