@@ -40,3 +40,22 @@ export interface LifetimeStats {
   /** winDistribution[n-1] = number of wins that took n guesses */
   winDistribution: number[];
 }
+
+export type Mode = 'daily' | 'arcade';
+
+export interface ArcadeStats {
+  totalPoints: number;
+  gamesPlayed: number;
+  gamesWon: number;
+  /** Consecutive Free Play wins right now (resets on a loss) */
+  currentRun: number;
+  bestRun: number;
+}
+
+/** Serialized in-progress Free Play round (events stored by id) */
+export interface ArcadeRoundSave {
+  eventIds: string[];
+  currentOrder: string[];
+  guesses: GuessRecord[];
+  status: GameStatus;
+}

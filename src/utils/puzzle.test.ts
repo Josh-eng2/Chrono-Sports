@@ -2,11 +2,14 @@ import { describe, expect, it } from 'vitest';
 import { EVENT_COUNT, MAX_PREPLACED } from '../constants';
 import {
   countFixedPoints,
+  eventPool,
   getCorrectOrder,
   getPuzzleById,
   getPuzzleNumber,
   getShuffledOrder,
   puzzles,
+  sampleArcadeEvents,
+  shuffleAvoidingSolved,
 } from './puzzle';
 
 describe('getPuzzleNumber', () => {
@@ -60,6 +63,43 @@ describe('getShuffledOrder', () => {
       expect(dealt).not.toEqual(correct);
       expect(countFixedPoints(dealt, correct)).toBeLessThanOrEqual(MAX_PREPLACED);
       expect([...dealt].sort()).toEqual([...correct].sort()); // same multiset
+    }
+  });
+});
+
+describe('sampleArcadeEvents (Free Play)', () => {
+  it('always deals 5 pool events with distinct ids and distinct dates', () => {
+    for (let run = 0; run < 50; run++) {
+      const events = sampleArcadeEvents();
+      expect(events).toHaveLength(EVENT_COUNT);
+      expect(new Set(events.map((e) => e.id)).size).toBe(EVENT_COUNT);
+      expect(new Set(events.map((e) => e.date)).size).toBe(EVENT_COUNT);
+      for (const e of events) expect(eventPool).toContain(e);
+    }
+  });
+
+  it('is deterministic under an injected random source', () => {
+    const makeRand = () => {
+      let s = 42;
+      return () => {
+        s = (s * 1103515245 + 12345) % 2147483648;
+        return s / 2147483648;
+      };
+    };
+    const a = sampleArcadeEvents(makeRand()).map((e) => e.id);
+    const b = sampleArcadeEvents(makeRand()).map((e) => e.id);
+    expect(a).toEqual(b);
+  });
+});
+
+describe('shuffleAvoidingSolved', () => {
+  it('never deals a solved or nearly-solved board for random Free Play deals', () => {
+    for (let run = 0; run < 50; run++) {
+      const correct = getCorrectOrder(sampleArcadeEvents());
+      const dealt = shuffleAvoidingSolved(correct, Math.random);
+      expect(dealt).not.toEqual(correct);
+      expect(countFixedPoints(dealt, correct)).toBeLessThanOrEqual(MAX_PREPLACED);
+      expect([...dealt].sort()).toEqual([...correct].sort());
     }
   });
 });

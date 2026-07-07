@@ -1,8 +1,16 @@
 # Chrono-Sort: Sports Edition ⏱️
 
-A Wordle-style daily web puzzle: drag **5 historic sports moments** into chronological
+A Wordle-style web puzzle: drag **5 historic sports moments** into chronological
 order (oldest at the top) in **5 guesses or fewer**. Green = right spot, yellow = one
-spot away, gray = two or more away. New puzzle every day at local midnight.
+spot away, gray = two or more away.
+
+Two ways to play:
+
+- **📅 Daily** — one shared puzzle per day at local midnight. Build a 🔥 streak and
+  share your result grid.
+- **🎯 Free Play** — unlimited rounds, each a fresh random draw of 5 events from the
+  full 150-event pool. Earn **500/400/300/200/100 points** for wins in 1–5 guesses,
+  chase your best win run, and share your score.
 
 **Status:** v1 complete — playable, tested, ready to deploy.
 
@@ -32,24 +40,29 @@ src/
 ├── data/puzzles.json         # 30 puzzles × 5 verified events (add more here!)
 ├── utils/
 │   ├── date.ts               # Local-timezone date keys, day math, countdown
-│   ├── puzzle.ts             # Daily puzzle number + seeded (fair) shuffle
+│   ├── puzzle.ts             # Daily puzzle number, seeded shuffle, Free Play sampler
 │   ├── evaluate.ts           # Wordle-style positional feedback
-│   ├── share.ts              # Emoji share card + native share / clipboard
-│   └── storage.ts            # localStorage persistence, streaks, stats
-├── hooks/useGame.ts          # The game state machine (single source of truth)
+│   ├── share.ts              # Emoji share cards + native share / clipboard
+│   └── storage.ts            # localStorage persistence, streaks, points, stats
+├── hooks/
+│   ├── useGame.ts            # Daily mode state machine
+│   └── useArcade.ts          # Free Play state machine (points, runs, rounds)
 └── components/
     ├── Header.tsx            # Title, how-to & stats buttons, 🔥 streak badge
+    ├── ModeTabs.tsx          # 📅 Daily / 🎯 Free Play switcher
     ├── GameBoard.tsx         # DndContext + SortableContext (pointer + keyboard)
     ├── EventCard.tsx         # Draggable card with feedback colors + ✓/~/✕
     ├── HistoryGrid.tsx       # Wordle-style rows of past guesses
-    ├── Controls.tsx          # Guess dots + submit / see-results button
+    ├── Controls.tsx          # Guess dots + submit / results / next-puzzle buttons
     ├── Modal.tsx             # Shared dialog shell (Escape, backdrop close)
     ├── HowToPlayModal.tsx
-    ├── StatsModal.tsx        # Stat tiles + guess-distribution chart
-    ├── EndGameModal.tsx      # Correct timeline, countdown, share button
+    ├── StatsModal.tsx        # Daily + Free Play stats, guess-distribution chart
+    ├── EndGameModal.tsx      # Daily results: timeline, countdown, share
+    ├── ArcadeEndModal.tsx    # Free Play results: points, run, next puzzle
+    ├── Timeline.tsx          # The chronological answer list (shared)
     ├── Countdown.tsx         # HH:MM:SS to the next local midnight
     ├── Toast.tsx
-    └── EdgeScreens.tsx       # Pre-launch and end-of-archive screens
+    └── EdgeScreens.tsx       # Inline notice when no daily puzzle exists
 ```
 
 ## Adding puzzles

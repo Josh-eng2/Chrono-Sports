@@ -1,13 +1,16 @@
 import { MAX_GUESSES } from '../constants';
-import type { GameStatus } from '../types/game';
+import type { GameStatus, Mode } from '../types/game';
 
 interface ControlsProps {
   guessesRemaining: number;
   canSubmit: boolean;
   status: GameStatus;
   alreadyTried: boolean;
+  mode: Mode;
   onSubmit: () => void;
   onShowResults: () => void;
+  /** Free Play only: deal the next random puzzle */
+  onNextRound?: () => void;
 }
 
 export default function Controls({
@@ -15,12 +18,22 @@ export default function Controls({
   canSubmit,
   status,
   alreadyTried,
+  mode,
   onSubmit,
   onShowResults,
+  onNextRound,
 }: ControlsProps) {
   if (status !== 'playing') {
     return (
       <div className="flex flex-col gap-2">
+        {mode === 'arcade' && onNextRound && (
+          <button
+            onClick={onNextRound}
+            className="w-full rounded-lg bg-blue-600 py-3 font-display text-xl tracking-wider text-white transition hover:bg-blue-700"
+          >
+            NEXT PUZZLE
+          </button>
+        )}
         <button
           onClick={onShowResults}
           className="w-full rounded-lg bg-neutral-800 py-3 font-display text-xl tracking-wider text-white transition hover:bg-neutral-700"

@@ -1,9 +1,20 @@
-import { LAUNCH_DATE, MAX_PREPLACED } from '../constants';
+import { EVENT_COUNT, LAUNCH_DATE, MAX_PREPLACED } from '../constants';
 import { daysBetween } from './date';
 import type { Puzzle, SportEvent } from '../types/game';
 import puzzlesJson from '../data/puzzles.json';
 
 export const puzzles: Puzzle[] = puzzlesJson;
+
+/** Every event across every puzzle — the Free Play sampling pool. */
+export const eventPool: SportEvent[] = puzzles.flatMap((p) => p.events);
+
+const eventPoolById: Record<string, SportEvent> = Object.fromEntries(
+  eventPool.map((e) => [e.id, e]),
+);
+
+export function getAllEventsById(): Record<string, SportEvent> {
+  return eventPoolById;
+}
 
 export function getLaunchDate(): Date {
   return new Date(LAUNCH_DATE.year, LAUNCH_DATE.month, LAUNCH_DATE.day);
@@ -54,17 +65,45 @@ export function countFixedPoints(order: string[], correct: string[]): number {
 }
 
 /**
- * Deterministic per-seed shuffle that never deals a solved (or nearly solved)
- * board: re-rolls from the same PRNG stream while more than MAX_PREPLACED
- * cards would start in their correct slot.
+ * Shuffle that never deals a solved (or nearly solved) board: re-rolls from
+ * the same random stream while more than MAX_PREPLACED cards would start in
+ * their correct slot. Used seeded for Daily and unseeded for Free Play.
  */
-export function getShuffledOrder(puzzle: Puzzle, seed: number): string[] {
-  const correct = getCorrectOrder(puzzle.events);
-  const rand = seededRandom(seed);
+export function shuffleAvoidingSolved(correct: string[], rand: () => number): string[] {
   for (let attempt = 0; attempt < 20; attempt++) {
     const order = fisherYates(correct, rand);
     if (countFixedPoints(order, correct) <= MAX_PREPLACED) return order;
   }
   // Statistically unreachable; a rotation by 2 has zero fixed points.
   return [...correct.slice(2), ...correct.slice(0, 2)];
+}
+
+/** Deterministic per-day deal so every player sees the same Daily board. */
+export function getShuffledOrder(puzzle: Puzzle, seed: number): string[] {
+  return shuffleAvoidingSolved(getCorrectOrder(puzzle.events), seededRandom(seed));
+}
+
+/**
+ * Free Play deal: 5 random events from the whole pool with pairwise-distinct
+ * dates (a shared date would make the correct order ambiguous). With 150
+ * events this yields hundreds of millions of combinations — effectively
+ * endless, and never a copy of a specific Daily puzzle.
+ */
+export function sampleArcadeEvents(rand: () => number = Math.random): SportEvent[] {
+  for (let tries = 0; tries < 100; tries++) {
+    const picked: SportEvent[] = [];
+    const usedIndexes = new Set<number>();
+    const usedDates = new Set<string>();
+    while (picked.length < EVENT_COUNT && usedIndexes.size < eventPool.length) {
+      const i = Math.floor(rand() * eventPool.length);
+      if (usedIndexes.has(i)) continue;
+      usedIndexes.add(i);
+      const event = eventPool[i];
+      if (usedDates.has(event.date)) continue;
+      usedDates.add(event.date);
+      picked.push(event);
+    }
+    if (picked.length === EVENT_COUNT) return picked;
+  }
+  return puzzles[0].events; // unreachable with a sane dataset
 }

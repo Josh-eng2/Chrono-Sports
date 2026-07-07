@@ -1,10 +1,12 @@
-import { MAX_GUESSES, STORAGE_PREFIX } from '../constants';
-import type { DayState, LifetimeStats } from '../types/game';
+import { ARCADE_POINTS, MAX_GUESSES, STORAGE_PREFIX } from '../constants';
+import type { ArcadeRoundSave, ArcadeStats, DayState, LifetimeStats } from '../types/game';
 import { daysBetween, getTodayDateKey, getYesterdayDateKey, parseDateKey } from './date';
 
 const DAY_KEY_PREFIX = `${STORAGE_PREFIX}-day-`;
 const STATS_KEY = `${STORAGE_PREFIX}-stats`;
 const HOWTO_KEY = `${STORAGE_PREFIX}-howto-seen`;
+const ARCADE_STATS_KEY = `${STORAGE_PREFIX}-arcade-stats`;
+const ARCADE_ROUND_KEY = `${STORAGE_PREFIX}-arcade-round`;
 
 const dayKey = (dateKey: string) => `${DAY_KEY_PREFIX}${dateKey}`;
 
@@ -132,4 +134,63 @@ export function hasSeenHowTo(): boolean {
 
 export function markHowToSeen(): void {
   safeWrite(HOWTO_KEY, '1');
+}
+
+/* ---------- Free Play (arcade) ---------- */
+
+export function defaultArcadeStats(): ArcadeStats {
+  return { totalPoints: 0, gamesPlayed: 0, gamesWon: 0, currentRun: 0, bestRun: 0 };
+}
+
+export function loadArcadeStats(): ArcadeStats {
+  const raw = safeRead(ARCADE_STATS_KEY);
+  if (!raw) return defaultArcadeStats();
+  try {
+    return { ...defaultArcadeStats(), ...(JSON.parse(raw) as Partial<ArcadeStats>) };
+  } catch {
+    return defaultArcadeStats();
+  }
+}
+
+export function saveArcadeStats(stats: ArcadeStats): void {
+  safeWrite(ARCADE_STATS_KEY, JSON.stringify(stats));
+}
+
+/** Award points for a finished Free Play round and update the win run. */
+export function recordArcadeResult(
+  won: boolean,
+  attemptsUsed: number,
+): { stats: ArcadeStats; pointsEarned: number } {
+  const stats = loadArcadeStats();
+  const pointsEarned = won
+    ? ARCADE_POINTS[Math.min(Math.max(attemptsUsed, 1), MAX_GUESSES) - 1]
+    : 0;
+  stats.gamesPlayed += 1;
+  if (won) {
+    stats.gamesWon += 1;
+    stats.totalPoints += pointsEarned;
+    stats.currentRun += 1;
+    stats.bestRun = Math.max(stats.bestRun, stats.currentRun);
+  } else {
+    stats.currentRun = 0;
+  }
+  saveArcadeStats(stats);
+  return { stats, pointsEarned };
+}
+
+export function loadArcadeRound(): ArcadeRoundSave | null {
+  const raw = safeRead(ARCADE_ROUND_KEY);
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as ArcadeRoundSave;
+    if (!Array.isArray(parsed.eventIds) || !Array.isArray(parsed.currentOrder)) return null;
+    if (!Array.isArray(parsed.guesses)) return null;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+export function saveArcadeRound(round: ArcadeRoundSave): void {
+  safeWrite(ARCADE_ROUND_KEY, JSON.stringify(round));
 }

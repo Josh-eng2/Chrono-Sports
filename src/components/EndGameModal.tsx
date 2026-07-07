@@ -1,7 +1,6 @@
-import { useMemo } from 'react';
 import Modal from './Modal';
 import Countdown from './Countdown';
-import { formatDisplayDate } from '../utils/date';
+import Timeline from './Timeline';
 import type { GuessRecord, SportEvent } from '../types/game';
 
 interface EndGameModalProps {
@@ -27,11 +26,6 @@ export default function EndGameModal({
   displayStreak,
   onShare,
 }: EndGameModalProps) {
-  const timeline = useMemo(
-    () => [...events].sort((a, b) => a.date.localeCompare(b.date)),
-    [events],
-  );
-
   const headline = won ? WIN_HEADLINES[Math.min(guesses.length, 5) - 1] : 'TIME EXPIRED!';
   const subline = won
     ? `You nailed puzzle #${puzzleNumber} in ${guesses.length}/${5}${displayStreak > 1 ? ` — that's a ${displayStreak}-day streak 🔥` : '!'}`
@@ -44,24 +38,9 @@ export default function EndGameModal({
       <h3 className="mb-2 text-xs font-bold uppercase tracking-widest text-neutral-500">
         The correct timeline
       </h3>
-      <ol className="mb-5 flex flex-col">
-        {timeline.map((event, i) => (
-          <li key={event.id} className="relative flex gap-3 pb-3 last:pb-0">
-            {i < timeline.length - 1 && (
-              <span aria-hidden="true" className="absolute left-[13px] top-7 h-full w-0.5 bg-neutral-200" />
-            )}
-            <span className="z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
-              {i + 1}
-            </span>
-            <div className="min-w-0">
-              <p className="text-sm font-medium leading-snug text-neutral-900">{event.text}</p>
-              <p className="text-xs font-bold tabular-nums text-blue-700">
-                {formatDisplayDate(event.date)}
-              </p>
-            </div>
-          </li>
-        ))}
-      </ol>
+      <div className="mb-5">
+        <Timeline events={events} />
+      </div>
 
       <div className="grid grid-cols-2 items-center gap-3 border-t border-neutral-200 pt-4">
         <Countdown />

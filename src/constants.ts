@@ -13,6 +13,9 @@ export const STORAGE_PREFIX = 'chrono-sort';
 /** Seeded shuffle re-rolls if more than this many cards start in the right slot */
 export const MAX_PREPLACED = 2;
 
+/** Free Play: points for a win in 1, 2, 3, 4, 5 guesses (loss = 0) */
+export const ARCADE_POINTS = [500, 400, 300, 200, 100] as const;
+
 export const FEEDBACK_CLASSES: Record<FeedbackColor, string> = {
   correct: 'bg-green-500 border-green-600 text-white',
   close: 'bg-yellow-400 border-yellow-500 text-neutral-900',
