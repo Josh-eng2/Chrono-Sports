@@ -13,7 +13,7 @@ describe('buildShareText', () => {
     const text = buildShareText(1, WIN_GUESSES, true);
     expect(text.split('\n')).toEqual([
       'Chrono-Sort: Sports #1',
-      '⏱️ 3/5',
+      '⏱️ 3/3',
       '🟨🟩⬛⬛🟨',
       '🟩🟩🟨🟨⬛',
       '🟩🟩🟩🟩🟩',
@@ -21,17 +21,17 @@ describe('buildShareText', () => {
     ]);
   });
 
-  it('shows X/5 on a loss', () => {
-    const lossGuesses = Array(5).fill(WIN_GUESSES[0]);
+  it('shows X/3 on a loss', () => {
+    const lossGuesses = Array(3).fill(WIN_GUESSES[0]);
     const text = buildShareText(7, lossGuesses, false);
-    expect(text).toContain('⏱️ X/5');
-    expect(text.split('\n')).toHaveLength(2 + 5 + 1);
+    expect(text).toContain('⏱️ X/3');
+    expect(text.split('\n')).toHaveLength(2 + 3 + 1);
   });
 
   it('brags about streaks of 2+ on wins only', () => {
-    expect(buildShareText(1, WIN_GUESSES, true, 4)).toContain('⏱️ 3/5 · 🔥4');
+    expect(buildShareText(1, WIN_GUESSES, true, 4)).toContain('⏱️ 3/3 · 🔥4');
     expect(buildShareText(1, WIN_GUESSES, true, 1)).not.toContain('🔥');
-    const lossGuesses = Array(5).fill(WIN_GUESSES[0]);
+    const lossGuesses = Array(3).fill(WIN_GUESSES[0]);
     expect(buildShareText(1, lossGuesses, false, 4)).not.toContain('🔥');
   });
 });

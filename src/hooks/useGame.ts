@@ -10,7 +10,7 @@ import type {
   SportEvent,
 } from '../types/game';
 import { getTodayDateKey, parseDateKey } from '../utils/date';
-import { arraysEqual, evaluateGuess, isWinningFeedback } from '../utils/evaluate';
+import { evaluateGuess, isWinningFeedback } from '../utils/evaluate';
 import {
   getCorrectOrder,
   getEventMap,
@@ -35,14 +35,14 @@ export interface UseGameReturn {
   eventsById: Record<string, SportEvent>;
   currentOrder: string[];
   guesses: GuessRecord[];
-  /** Feedback painted on the cards right now (null once the player reorders) */
+  /** Per-slot feedback from the most recent guess (follows each event when reordered) */
   liveFeedback: FeedbackColor[] | null;
   guessesRemaining: number;
   status: GameStatus;
   stats: LifetimeStats;
   displayStreak: number;
   correctOrder: string[];
-  /** True when the current arrangement exactly matches an earlier guess */
+  /** Duplicate-order guard disabled so players can submit turns immediately */
   alreadyTried: boolean;
   canSubmit: boolean;
   reorder: (newOrder: string[]) => void;
@@ -113,11 +113,16 @@ export function useGame(): UseGameReturn {
   const status = day?.status ?? 'playing';
 
   const lastGuess = guesses.length > 0 ? guesses[guesses.length - 1] : null;
-  const liveFeedback =
-    lastGuess && arraysEqual(currentOrder, lastGuess.order) ? lastGuess.feedback : null;
-  const alreadyTried =
-    status === 'playing' && guesses.some((g) => arraysEqual(g.order, currentOrder));
-  const canSubmit = status === 'playing' && currentOrder.length > 0 && !alreadyTried;
+  // Keep each card's last-guess color while the player rearranges for the next attempt.
+  const liveFeedback = useMemo((): FeedbackColor[] | null => {
+    if (!lastGuess) return null;
+    const byEventId = Object.fromEntries(
+      lastGuess.order.map((id, i) => [id, lastGuess.feedback[i]]),
+    ) as Record<string, FeedbackColor>;
+    return currentOrder.map((id) => byEventId[id]);
+  }, [lastGuess, currentOrder]);
+  const alreadyTried = false;
+  const canSubmit = status === 'playing' && currentOrder.length > 0;
 
   const reorder = useCallback((newOrder: string[]) => {
     setDay((prev) =>
@@ -127,8 +132,6 @@ export function useGame(): UseGameReturn {
 
   const submitGuess = useCallback(() => {
     if (!day || day.status !== 'playing' || day.guesses.length >= MAX_GUESSES) return;
-    if (day.guesses.some((g) => arraysEqual(g.order, day.currentOrder))) return;
-
     const feedback = evaluateGuess(day.currentOrder, correctOrder);
     const nextGuesses: GuessRecord[] = [...day.guesses, { order: [...day.currentOrder], feedback }];
     const won = isWinningFeedback(feedback);

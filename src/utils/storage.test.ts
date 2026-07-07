@@ -72,15 +72,15 @@ describe('recordGameResult', () => {
     expect(stats.gamesWon).toBe(1);
     expect(stats.currentStreak).toBe(1);
     expect(stats.maxStreak).toBe(1);
-    expect(stats.winDistribution).toEqual([0, 0, 1, 0, 0]);
+    expect(stats.winDistribution).toEqual([0, 0, 1]);
   });
 
   it('extends the streak on consecutive-day wins', () => {
     recordGameResult(true, 2, '2026-07-07');
-    const stats = recordGameResult(true, 4, '2026-07-08');
+    const stats = recordGameResult(true, 3, '2026-07-08');
     expect(stats.currentStreak).toBe(2);
     expect(stats.maxStreak).toBe(2);
-    expect(stats.winDistribution).toEqual([0, 1, 0, 1, 0]);
+    expect(stats.winDistribution).toEqual([0, 1, 1]);
   });
 
   it('resets the streak to 1 after a missed day', () => {
@@ -92,7 +92,7 @@ describe('recordGameResult', () => {
 
   it('zeroes the streak on a loss', () => {
     recordGameResult(true, 2, '2026-07-07');
-    const stats = recordGameResult(false, 5, '2026-07-08');
+    const stats = recordGameResult(false, 3, '2026-07-08');
     expect(stats.currentStreak).toBe(0);
     expect(stats.gamesWon).toBe(1);
     expect(stats.gamesPlayed).toBe(2);
@@ -181,7 +181,7 @@ describe('loadStats', () => {
       JSON.stringify({ gamesPlayed: 3, gamesWon: 2, currentStreak: 1, maxStreak: 2, lastPlayedDate: '2026-07-06' }),
     );
     const stats = loadStats();
-    expect(stats.winDistribution).toEqual([0, 0, 0, 0, 0]);
+    expect(stats.winDistribution).toEqual([0, 0, 0]);
     expect(stats.gamesPlayed).toBe(3);
   });
 });

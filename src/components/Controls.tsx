@@ -69,11 +69,6 @@ export default function Controls({
         SUBMIT GUESS
       </button>
 
-      {alreadyTried && (
-        <p className="text-center text-xs font-medium text-neutral-500" role="status">
-          You already tried this order — drag the cards to change it, then guess again.
-        </p>
-      )}
     </div>
   );
 }

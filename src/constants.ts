@@ -3,7 +3,7 @@ import type { FeedbackColor } from './types/game';
 /** Puzzle #1 goes live this local calendar day (month is 0-indexed: 6 = July) */
 export const LAUNCH_DATE = { year: 2026, month: 6, day: 7 };
 
-export const MAX_GUESSES = 5;
+export const MAX_GUESSES = 3;
 export const EVENT_COUNT = 5;
 
 export const GAME_TITLE = 'Chrono-Sort: Sports';
