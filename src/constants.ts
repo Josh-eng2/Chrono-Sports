@@ -7,7 +7,7 @@ export const MAX_GUESSES = 5;
 export const EVENT_COUNT = 5;
 
 export const GAME_TITLE = 'Chrono-Sort: Sports';
-export const SHARE_URL = 'https://chrono-sort-sports.com';
+export const SHARE_URL = 'https://josh-eng2.github.io/Chrono-Sports/';
 export const STORAGE_PREFIX = 'chrono-sort';
 
 /** Seeded shuffle re-rolls if more than this many cards start in the right slot */

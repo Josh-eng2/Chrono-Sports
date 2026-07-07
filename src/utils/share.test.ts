@@ -17,7 +17,7 @@ describe('buildShareText', () => {
       '🟨🟩⬛⬛🟨',
       '🟩🟩🟨🟨⬛',
       '🟩🟩🟩🟩🟩',
-      'https://chrono-sort-sports.com',
+      'https://josh-eng2.github.io/Chrono-Sports/',
     ]);
   });
 
