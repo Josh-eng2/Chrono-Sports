@@ -42,6 +42,33 @@ Emoji mapping for share/history: Green = `🟩`, Yellow = `🟨`, Gray = `⬛`.
 
 ---
 
+## v1.1 Review Addendum (implemented)
+
+A second review pass before implementation found five correctness gaps and added six engagement features. All are implemented in v1.
+
+### Bugs / edge cases fixed
+
+| # | Issue found in the plan | Fix shipped |
+|---|---|---|
+| 1 | **Seeded shuffle can deal a solved board.** A random permutation of 5 items is the identity ~1/120 of the time, and has 3+ cards pre-placed ~9% of the time — a boring or instantly-won puzzle. | `getShuffledOrder` re-rolls from the same PRNG stream until ≤ 2 cards start in their correct slot (still fully deterministic per day). A unit test asserts this for all 30 real puzzles. |
+| 2 | **`recordGameResult` could double-count.** The planned version ran streak logic even when today was already recorded. | Early-return guard: if `lastPlayedDate === today`, stats are untouched — idempotent under re-fired effects and double-taps. |
+| 3 | **Stale streak display.** A player who last won 5 days ago would still *see* their old streak until finishing a game, because stored `currentStreak` only resets when a result is recorded. | `getDisplayStreak()` returns 0 whenever `lastPlayedDate` is older than yesterday; the stored value is corrected on the next recorded game. |
+| 4 | **Midnight rollover with the tab open.** The planned init ran once on mount — a phone left open overnight would serve yesterday's puzzle. | `useGame` re-checks the local date key on `focus`, `visibilitychange`, and a 60s interval, and re-initializes the board when the day changes. |
+| 5 | **Wasted duplicate guesses.** Nothing stopped re-submitting an order already guessed (feedback is deterministic, so it's always a wasted attempt). | Submit is disabled whenever the current arrangement matches *any* previous guess, with a hint under the button. This also subsumes the "block accidental double-submit" rule. |
+
+Also: `localStorage` day-states are pruned after 7 days (one key per day would otherwise accumulate forever), and loss shares read `⏱️ X/5` (Wordle convention) instead of the planned `5/5`, which would falsely read as a 5th-guess win.
+
+### Engagement / virality additions
+
+1. **Countdown to the next puzzle** in the end-game modal — Wordle's proven retention hook.
+2. **Streak in the share text** (`⏱️ 3/5 · 🔥4`) plus **native share sheet** (`navigator.share`) on mobile with clipboard fallback — shares are the growth loop, so losing zero mobile users to a broken copy button matters.
+3. **Guess-distribution bar chart** in the stats modal (`winDistribution` added to `LifetimeStats`), with today's winning row highlighted.
+4. **Daily themes** — each puzzle carries an optional `theme` ("Boxing's Biggest Nights", "Underdog Uprisings") shown under the header; themed days are a Connections-style hook that gives every puzzle an identity.
+5. **Staggered flip reveal** — feedback colors flip in card-by-card (120 ms stagger), Wordle's signature dopamine beat.
+6. **Colorblind-safe feedback** — the slot badge swaps to ✓ / ~ / ✕ alongside green/yellow/gray, so color is never the only signal.
+
+---
+
 ## Tech Stack
 
 - **Scaffold:** [Vite](https://vitejs.dev/) + React 18 + TypeScript
@@ -96,15 +123,15 @@ Chrono-Sports/
 
 | ID | Task | Status |
 |---|---|---|
-| scaffold | Scaffold Vite + React + TS + Tailwind; install @dnd-kit packages; add constants + index.css theme | pending |
-| types-data | Create types/game.ts, puzzles.json (30 puzzles), and pure utils (puzzle, evaluate, share, storage, date) | pending |
-| unit-tests | Add Vitest; test evaluate, puzzle number, shuffle seed, streak logic, share text | pending |
-| use-game-hook | Implement useGame hook: state machine, daily init, submit, reorder, win/lose, localStorage sync | pending |
-| game-ui | Build GameBoard, EventCard (dnd-kit), HistoryGrid, Controls, Header, Toast | pending |
-| modals | Build Modal shell + HowToPlay, Stats, EndGame (timeline, share clipboard) | pending |
-| edge-screens | Build NoPuzzleScreen (pre-launch / post-dataset) and CompletedDayBanner | pending |
-| polish-qa | Polish responsive UI, a11y, streak/midnight edge cases, manual QA matrix | pending |
-| deploy | Add GitHub Actions or Vercel config; verify production build + HTTPS clipboard | pending |
+| scaffold | Scaffold Vite + React + TS + Tailwind; install @dnd-kit packages; add constants + index.css theme | done |
+| types-data | Create types/game.ts, puzzles.json (30 puzzles), and pure utils (puzzle, evaluate, share, storage, date) | done |
+| unit-tests | Add Vitest; test evaluate, puzzle number, shuffle seed, streak logic, share text | done (39 tests) |
+| use-game-hook | Implement useGame hook: state machine, daily init, submit, reorder, win/lose, localStorage sync | done |
+| game-ui | Build GameBoard, EventCard (dnd-kit), HistoryGrid, Controls, Header, Toast | done |
+| modals | Build Modal shell + HowToPlay, Stats, EndGame (timeline, share clipboard) | done |
+| edge-screens | Build PreLaunchScreen + NoPuzzleScreen (EdgeScreens.tsx) | done |
+| polish-qa | Polish responsive UI, a11y, streak/midnight edge cases, browser-driven QA (22 e2e checks) | done |
+| deploy | Connect repo to Vercel/Netlify; verify production build + HTTPS clipboard | pending (needs hosting account) |
 
 ---
 

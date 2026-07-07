@@ -1,0 +1,332 @@
+[
+  {
+    "id": 1,
+    "theme": "Legends Across Eras",
+    "events": [
+      { "id": "rumble-in-the-jungle", "text": "Muhammad Ali stuns George Foreman in the Rumble in the Jungle", "date": "1974-10-30" },
+      { "id": "miracle-on-ice", "text": "USA's \"Miracle on Ice\" upset of the Soviet Union at Lake Placid", "date": "1980-02-22" },
+      { "id": "tiger-first-masters", "text": "Tiger Woods wins his first Masters by a record 12 strokes", "date": "1997-04-13" },
+      { "id": "kobe-81", "text": "Kobe Bryant drops 81 points against the Toronto Raptors", "date": "2006-01-22" },
+      { "id": "leicester-title", "text": "5000-to-1 Leicester City clinch the Premier League title", "date": "2016-05-02" }
+    ]
+  },
+  {
+    "id": 2,
+    "theme": "Diamond Classics",
+    "events": [
+      { "id": "ruth-called-shot", "text": "Babe Ruth's \"Called Shot\" home run in the World Series", "date": "1932-10-01" },
+      { "id": "robinson-debut", "text": "Jackie Robinson breaks MLB's color barrier with the Dodgers", "date": "1947-04-15" },
+      { "id": "larsen-perfect", "text": "Don Larsen throws the only perfect game in World Series history", "date": "1956-10-08" },
+      { "id": "aaron-715", "text": "Hank Aaron passes Babe Ruth with home run No. 715", "date": "1974-04-08" },
+      { "id": "ripken-2131", "text": "Cal Ripken Jr. plays his 2,131st straight game, passing Gehrig", "date": "1995-09-06" }
+    ]
+  },
+  {
+    "id": 3,
+    "theme": "World Cup Drama",
+    "events": [
+      { "id": "maracanazo", "text": "Uruguay shock hosts Brazil in the \"Maracanazo\" World Cup decider", "date": "1950-07-16" },
+      { "id": "england-1966", "text": "England beat West Germany at Wembley to win the World Cup", "date": "1966-07-30" },
+      { "id": "hand-of-god", "text": "Diego Maradona's \"Hand of God\" and solo goal against England", "date": "1986-06-22" },
+      { "id": "zidane-headbutt", "text": "Zinedine Zidane's headbutt in the World Cup final against Italy", "date": "2006-07-09" },
+      { "id": "messi-world-cup", "text": "Lionel Messi finally lifts the World Cup after an epic final", "date": "2022-12-18" }
+    ]
+  },
+  {
+    "id": 4,
+    "theme": "Olympic Summer Magic",
+    "events": [
+      { "id": "owens-berlin", "text": "Jesse Owens wins 100m gold at the Berlin Olympics", "date": "1936-08-03" },
+      { "id": "bikila-barefoot", "text": "Abebe Bikila wins the Olympic marathon running barefoot", "date": "1960-09-10" },
+      { "id": "comaneci-perfect-10", "text": "Nadia Comaneci scores the first Olympic perfect 10", "date": "1976-07-18" },
+      { "id": "strug-vault", "text": "Kerri Strug sticks her vault landing on an injured ankle", "date": "1996-07-23" },
+      { "id": "phelps-eight-golds", "text": "Michael Phelps wins a record eighth gold at a single Games", "date": "2008-08-17" }
+    ]
+  },
+  {
+    "id": 5,
+    "theme": "NBA Icons",
+    "events": [
+      { "id": "wilt-100", "text": "Wilt Chamberlain scores 100 points in a single game", "date": "1962-03-02" },
+      { "id": "russell-11th", "text": "Bill Russell wins his 11th and final NBA championship", "date": "1969-05-05" },
+      { "id": "magic-game6", "text": "Rookie Magic Johnson's 42-point Finals closeout at center", "date": "1980-05-16" },
+      { "id": "jordan-last-shot", "text": "Michael Jordan's \"Last Shot\" seals his sixth title", "date": "1998-06-14" },
+      { "id": "lebron-scoring-record", "text": "LeBron James passes Kareem as the NBA's all-time scorer", "date": "2023-02-07" }
+    ]
+  },
+  {
+    "id": 6,
+    "theme": "Boxing's Biggest Nights",
+    "events": [
+      { "id": "louis-schmeling", "text": "Joe Louis knocks out Max Schmeling in their historic rematch", "date": "1938-06-22" },
+      { "id": "fight-of-century", "text": "Joe Frazier beats Muhammad Ali in the Fight of the Century", "date": "1971-03-08" },
+      { "id": "thrilla-manila", "text": "Ali outlasts Frazier in the brutal Thrilla in Manila", "date": "1975-10-01" },
+      { "id": "douglas-tyson", "text": "42-to-1 underdog Buster Douglas knocks out Mike Tyson", "date": "1990-02-11" },
+      { "id": "mayweather-pacquiao", "text": "Mayweather outpoints Pacquiao in boxing's richest fight", "date": "2015-05-02" }
+    ]
+  },
+  {
+    "id": 7,
+    "theme": "Tennis Trailblazers",
+    "events": [
+      { "id": "gibson-wimbledon", "text": "Althea Gibson becomes the first Black Wimbledon champion", "date": "1957-07-06" },
+      { "id": "battle-of-sexes", "text": "Billie Jean King beats Bobby Riggs in the Battle of the Sexes", "date": "1973-09-20" },
+      { "id": "ashe-wimbledon", "text": "Arthur Ashe upsets Jimmy Connors to win Wimbledon", "date": "1975-07-05" },
+      { "id": "graf-grand-slam", "text": "Steffi Graf completes the calendar Grand Slam at the US Open", "date": "1988-09-10" },
+      { "id": "federer-first-major", "text": "Roger Federer wins his first major title at Wimbledon", "date": "2003-07-06" }
+    ]
+  },
+  {
+    "id": 8,
+    "theme": "Gridiron Glory",
+    "events": [
+      { "id": "super-bowl-i", "text": "Green Bay beat Kansas City in the first Super Bowl", "date": "1967-01-15" },
+      { "id": "namath-guarantee", "text": "Joe Namath backs up his guarantee as the Jets win Super Bowl III", "date": "1969-01-12" },
+      { "id": "immaculate-reception", "text": "Franco Harris makes the \"Immaculate Reception\"", "date": "1972-12-23" },
+      { "id": "the-catch", "text": "Joe Montana finds Dwight Clark for \"The Catch\"", "date": "1982-01-10" },
+      { "id": "tyree-helmet-catch", "text": "David Tyree's helmet catch ends the Patriots' perfect season", "date": "2008-02-03" }
+    ]
+  },
+  {
+    "id": 9,
+    "theme": "Ice Cold Moments",
+    "events": [
+      { "id": "orr-flying-goal", "text": "Bobby Orr flies through the air after his Cup-winning goal", "date": "1970-05-10" },
+      { "id": "summit-series", "text": "Paul Henderson's late goal wins the Summit Series for Canada", "date": "1972-09-28" },
+      { "id": "gretzky-trade", "text": "Wayne Gretzky is traded from Edmonton to Los Angeles", "date": "1988-08-09" },
+      { "id": "crosby-golden-goal", "text": "Sidney Crosby's overtime \"Golden Goal\" wins Olympic gold", "date": "2010-02-28" },
+      { "id": "blackhawks-17-seconds", "text": "Chicago score twice in 17 seconds to steal the Stanley Cup", "date": "2013-06-24" }
+    ]
+  },
+  {
+    "id": 10,
+    "theme": "Full Throttle",
+    "events": [
+      { "id": "first-indy-500", "text": "Ray Harroun wins the first Indianapolis 500", "date": "1911-05-30" },
+      { "id": "lauda-crash", "text": "Niki Lauda survives a fiery crash at the Nurburgring", "date": "1976-08-01" },
+      { "id": "senna-imola", "text": "Ayrton Senna's fatal crash at Imola stuns Formula 1", "date": "1994-05-01" },
+      { "id": "danica-first-win", "text": "Danica Patrick becomes the first woman to win an IndyCar race", "date": "2008-04-20" },
+      { "id": "verstappen-abu-dhabi", "text": "Max Verstappen wins the F1 title on the final lap in Abu Dhabi", "date": "2021-12-12" }
+    ]
+  },
+  {
+    "id": 11,
+    "theme": "Cricket Classics",
+    "events": [
+      { "id": "india-1983", "text": "Kapil Dev's India upset the West Indies in the World Cup final", "date": "1983-06-25" },
+      { "id": "ball-of-century", "text": "Shane Warne bowls the \"Ball of the Century\" to Mike Gatting", "date": "1993-06-04" },
+      { "id": "lara-400", "text": "Brian Lara reaches 400 not out against England", "date": "2004-04-12" },
+      { "id": "india-2011", "text": "MS Dhoni's six wins the World Cup for India in Mumbai", "date": "2011-04-02" },
+      { "id": "stokes-headingley", "text": "Ben Stokes' miracle innings wins the Headingley Ashes Test", "date": "2019-08-25" }
+    ]
+  },
+  {
+    "id": 12,
+    "theme": "Rugby Thunder",
+    "events": [
+      { "id": "all-blacks-1987", "text": "New Zealand win the first Rugby World Cup", "date": "1987-06-20" },
+      { "id": "mandela-1995", "text": "Nelson Mandela hands the World Cup to Francois Pienaar", "date": "1995-06-24" },
+      { "id": "wilkinson-drop-goal", "text": "Jonny Wilkinson's last-minute drop goal wins the World Cup", "date": "2003-11-22" },
+      { "id": "japan-brighton", "text": "Japan stun South Africa in the \"Brighton Miracle\"", "date": "2015-09-19" },
+      { "id": "springboks-2019", "text": "Siya Kolisi's Springboks win the World Cup in Yokohama", "date": "2019-11-02" }
+    ]
+  },
+  {
+    "id": 13,
+    "theme": "Major Championship Golf",
+    "events": [
+      { "id": "ouimet-us-open", "text": "20-year-old amateur Francis Ouimet wins the US Open playoff", "date": "1913-09-20" },
+      { "id": "nicklaus-1986", "text": "46-year-old Jack Nicklaus charges to a sixth Masters", "date": "1986-04-13" },
+      { "id": "tiger-broken-leg", "text": "Tiger Woods wins a US Open playoff on a broken leg", "date": "2008-06-16" },
+      { "id": "miracle-medinah", "text": "Europe complete the \"Miracle at Medinah\" Ryder Cup comeback", "date": "2012-09-30" },
+      { "id": "tiger-2019-masters", "text": "Tiger Woods completes his comeback at the Masters", "date": "2019-04-14" }
+    ]
+  },
+  {
+    "id": 14,
+    "theme": "Track Immortals",
+    "events": [
+      { "id": "bannister-mile", "text": "Roger Bannister runs the first sub-four-minute mile", "date": "1954-05-06" },
+      { "id": "beamon-leap", "text": "Bob Beamon's long jump shatters the world record by 55cm", "date": "1968-10-18" },
+      { "id": "michael-johnson-200m", "text": "Michael Johnson blazes 19.32 in the Olympic 200m", "date": "1996-08-01" },
+      { "id": "bolt-958", "text": "Usain Bolt runs 9.58 to smash the 100m world record", "date": "2009-08-16" },
+      { "id": "kipchoge-sub2", "text": "Eliud Kipchoge breaks two hours for the marathon in Vienna", "date": "2019-10-12" }
+    ]
+  },
+  {
+    "id": 15,
+    "theme": "European Nights",
+    "events": [
+      { "id": "man-utd-treble", "text": "Manchester United complete the Treble in stoppage time", "date": "1999-05-26" },
+      { "id": "miracle-istanbul", "text": "Liverpool rally from 3-0 down in the Miracle of Istanbul", "date": "2005-05-25" },
+      { "id": "chelsea-munich", "text": "Chelsea beat Bayern on penalties in Bayern's own stadium", "date": "2012-05-19" },
+      { "id": "la-decima", "text": "Real Madrid win \"La Decima\" in the Lisbon final", "date": "2014-05-24" },
+      { "id": "la-remontada", "text": "Barcelona's 6-1 \"Remontada\" against PSG", "date": "2017-03-08" }
+    ]
+  },
+  {
+    "id": 16,
+    "theme": "Women Who Ruled",
+    "events": [
+      { "id": "retton-all-around", "text": "Mary Lou Retton's perfect 10 wins all-around gold in LA", "date": "1984-08-03" },
+      { "id": "navratilova-ninth", "text": "Martina Navratilova wins a record ninth Wimbledon", "date": "1990-07-07" },
+      { "id": "chastain-1999", "text": "Brandi Chastain's penalty wins the World Cup for the USA", "date": "1999-07-10" },
+      { "id": "freeman-sydney", "text": "Cathy Freeman wins 400m gold for the host nation in Sydney", "date": "2000-09-25" },
+      { "id": "biles-rio", "text": "Simone Biles crowns her Rio Games with all-around gold", "date": "2016-08-11" }
+    ]
+  },
+  {
+    "id": 17,
+    "theme": "Playoff Heartstoppers",
+    "events": [
+      { "id": "jordan-the-shot", "text": "Michael Jordan hits \"The Shot\" over Craig Ehlo", "date": "1989-05-07" },
+      { "id": "miller-time", "text": "Reggie Miller scores 8 points in 8.9 seconds at the Garden", "date": "1995-05-07" },
+      { "id": "iverson-step-over", "text": "Allen Iverson steps over Tyronn Lue in the NBA Finals", "date": "2001-06-06" },
+      { "id": "ray-allen-three", "text": "Ray Allen's corner three saves the Heat in Game 6", "date": "2013-06-18" },
+      { "id": "cavs-comeback", "text": "Cleveland complete the first 3-1 comeback in Finals history", "date": "2016-06-19" }
+    ]
+  },
+  {
+    "id": 18,
+    "theme": "Underdog Uprisings",
+    "events": [
+      { "id": "clay-liston", "text": "Cassius Clay shocks Sonny Liston to win the heavyweight title", "date": "1964-02-25" },
+      { "id": "nc-state-1983", "text": "NC State stun \"Phi Slama Jama\" with a buzzer-beating dunk", "date": "1983-04-04" },
+      { "id": "greece-euro-2004", "text": "80-to-1 outsiders Greece win Euro 2004 in Lisbon", "date": "2004-07-04" },
+      { "id": "villanova-buzzer", "text": "Kris Jenkins' buzzer-beater wins the national title for Villanova", "date": "2016-04-04" },
+      { "id": "raducanu-us-open", "text": "Qualifier Emma Raducanu wins the US Open without dropping a set", "date": "2021-09-11" }
+    ]
+  },
+  {
+    "id": 19,
+    "theme": "Records Shattered",
+    "events": [
+      { "id": "dimaggio-streak", "text": "Joe DiMaggio's 56-game hitting streak finally ends", "date": "1941-07-17" },
+      { "id": "spitz-seven", "text": "Mark Spitz wins his seventh gold medal in Munich", "date": "1972-09-04" },
+      { "id": "gretzky-1851", "text": "Wayne Gretzky passes Gordie Howe as the NHL's top scorer", "date": "1989-10-15" },
+      { "id": "bonds-756", "text": "Barry Bonds hits home run No. 756 to pass Hank Aaron", "date": "2007-08-07" },
+      { "id": "phelps-23rd", "text": "Michael Phelps wins his 23rd and final Olympic gold", "date": "2016-08-13" }
+    ]
+  },
+  {
+    "id": 20,
+    "theme": "Farewells & Comebacks",
+    "events": [
+      { "id": "jordan-retires", "text": "Michael Jordan shocks the world with his first retirement", "date": "1993-10-06" },
+      { "id": "jordan-return", "text": "\"I'm back\" — Michael Jordan announces his NBA return", "date": "1995-03-18" },
+      { "id": "ali-torch", "text": "Muhammad Ali lights the Olympic flame in Atlanta", "date": "1996-07-19" },
+      { "id": "jeter-walkoff", "text": "Derek Jeter ends his final Yankee Stadium game with a walk-off", "date": "2014-09-25" },
+      { "id": "kobe-60", "text": "Kobe Bryant scores 60 points in his final NBA game", "date": "2016-04-13" }
+    ]
+  },
+  {
+    "id": 21,
+    "theme": "Football Superstars",
+    "events": [
+      { "id": "beckham-halfway", "text": "David Beckham scores from the halfway line against Wimbledon", "date": "1996-08-17" },
+      { "id": "invincibles", "text": "Arsenal's \"Invincibles\" finish the league season unbeaten", "date": "2004-05-15" },
+      { "id": "messi-debut", "text": "17-year-old Lionel Messi makes his Barcelona league debut", "date": "2004-10-16" },
+      { "id": "aguero-93-20", "text": "Sergio Aguero's 93:20 goal snatches the title for City", "date": "2012-05-13" },
+      { "id": "ronaldo-bicycle", "text": "Cristiano Ronaldo's bicycle kick stuns Juventus in Turin", "date": "2018-04-03" }
+    ]
+  },
+  {
+    "id": 22,
+    "theme": "Olympic Stadium Stories",
+    "events": [
+      { "id": "zatopek-triple", "text": "Emil Zatopek completes the 5k, 10k and marathon treble", "date": "1952-07-27" },
+      { "id": "black-power-salute", "text": "Tommie Smith and John Carlos raise fists on the podium", "date": "1968-10-16" },
+      { "id": "redmond-father", "text": "Derek Redmond's father helps him finish his 400m semi-final", "date": "1992-08-03" },
+      { "id": "bolt-beijing", "text": "Usain Bolt jogs to a 9.69 world record in Beijing", "date": "2008-08-16" },
+      { "id": "super-saturday", "text": "Britain win three athletics golds in 44 minutes", "date": "2012-08-04" }
+    ]
+  },
+  {
+    "id": 23,
+    "theme": "Modern Tennis Epics",
+    "events": [
+      { "id": "agassi-career-slam", "text": "Andre Agassi completes the career Grand Slam in Paris", "date": "1999-06-06" },
+      { "id": "sampras-farewell", "text": "Pete Sampras wins his 14th major in his final match", "date": "2002-09-08" },
+      { "id": "federer-nadal-2008", "text": "Nadal beats Federer in the greatest Wimbledon final", "date": "2008-07-06" },
+      { "id": "isner-mahut", "text": "John Isner finally beats Nicolas Mahut 70-68 in the fifth set", "date": "2010-06-24" },
+      { "id": "osaka-serena", "text": "Naomi Osaka beats Serena Williams in a stormy US Open final", "date": "2018-09-08" }
+    ]
+  },
+  {
+    "id": 24,
+    "theme": "The 2010s",
+    "events": [
+      { "id": "linsanity", "text": "Jeremy Lin drops 38 on the Lakers at the peak of Linsanity", "date": "2012-02-10" },
+      { "id": "germany-brazil", "text": "Germany humiliate hosts Brazil 7-1 in the semi-final", "date": "2014-07-08" },
+      { "id": "cubs-curse", "text": "The Cubs end their 108-year World Series drought", "date": "2016-11-02" },
+      { "id": "minneapolis-miracle", "text": "Stefon Diggs' walk-off TD completes the Minneapolis Miracle", "date": "2018-01-14" },
+      { "id": "anfield-comeback", "text": "Liverpool overturn 3-0 against Barcelona at Anfield", "date": "2019-05-07" }
+    ]
+  },
+  {
+    "id": 25,
+    "theme": "Black & White Era",
+    "events": [
+      { "id": "athens-1896", "text": "The first modern Olympic Games open in Athens", "date": "1896-04-06" },
+      { "id": "johnson-burns", "text": "Jack Johnson becomes boxing's first Black heavyweight champion", "date": "1908-12-26" },
+      { "id": "ruth-60", "text": "Babe Ruth hits his 60th home run of the season", "date": "1927-09-30" },
+      { "id": "first-world-cup", "text": "Uruguay win the first FIFA World Cup on home soil", "date": "1930-07-30" },
+      { "id": "shot-heard-round", "text": "Bobby Thomson's \"Shot Heard 'Round the World\"", "date": "1951-10-03" }
+    ]
+  },
+  {
+    "id": 26,
+    "theme": "Winter Wonders",
+    "events": [
+      { "id": "klammer-downhill", "text": "Franz Klammer's daredevil downhill wins gold in Innsbruck", "date": "1976-02-05" },
+      { "id": "torvill-dean", "text": "Torvill and Dean's perfect \"Bolero\" at Sarajevo", "date": "1984-02-14" },
+      { "id": "shaun-white", "text": "Shaun White wins his first halfpipe gold in Turin", "date": "2006-02-12" },
+      { "id": "kim-yuna", "text": "Kim Yuna's record-breaking figure skating gold in Vancouver", "date": "2010-02-25" },
+      { "id": "chloe-kim", "text": "17-year-old Chloe Kim dominates the halfpipe in PyeongChang", "date": "2018-02-13" }
+    ]
+  },
+  {
+    "id": 27,
+    "theme": "Super Bowl Sundays",
+    "events": [
+      { "id": "perfect-dolphins", "text": "The Dolphins cap the NFL's only perfect season", "date": "1973-01-14" },
+      { "id": "brady-first", "text": "Tom Brady wins his first Super Bowl against the Rams", "date": "2002-02-03" },
+      { "id": "butler-interception", "text": "Malcolm Butler's goal-line interception saves the Patriots", "date": "2015-02-01" },
+      { "id": "falcons-28-3", "text": "The Patriots erase a 28-3 deficit to win in overtime", "date": "2017-02-05" },
+      { "id": "brady-seventh", "text": "Tom Brady wins ring No. 7 with Tampa Bay", "date": "2021-02-07" }
+    ]
+  },
+  {
+    "id": 28,
+    "theme": "Champions of Summer",
+    "events": [
+      { "id": "secretariat-belmont", "text": "Secretariat wins the Belmont by 31 lengths for the Triple Crown", "date": "1973-06-09" },
+      { "id": "borg-mcenroe", "text": "Borg outlasts McEnroe at Wimbledon after the epic 18-16 tiebreak", "date": "1980-07-05" },
+      { "id": "dream-team", "text": "The Dream Team cruise to Olympic gold in Barcelona", "date": "1992-08-08" },
+      { "id": "spain-2010", "text": "Iniesta's extra-time goal wins Spain their first World Cup", "date": "2010-07-11" },
+      { "id": "france-2018", "text": "Teenager Kylian Mbappe scores as France reclaim the World Cup", "date": "2018-07-15" }
+    ]
+  },
+  {
+    "id": 29,
+    "theme": "Hardwood History",
+    "events": [
+      { "id": "bird-magic-ncaa", "text": "Magic's Michigan State beat Bird's Indiana State in the NCAA final", "date": "1979-03-26" },
+      { "id": "laettner-shot", "text": "Christian Laettner's turnaround beats Kentucky at the buzzer", "date": "1992-03-28" },
+      { "id": "flu-game", "text": "Michael Jordan's \"Flu Game\" in the NBA Finals", "date": "1997-06-11" },
+      { "id": "the-decision", "text": "LeBron James takes his talents to South Beach", "date": "2010-07-08" },
+      { "id": "giannis-fifty", "text": "Giannis Antetokounmpo's 50-point closeout wins the title", "date": "2021-07-20" }
+    ]
+  },
+  {
+    "id": 30,
+    "theme": "Modern Classics",
+    "events": [
+      { "id": "tyson-bite", "text": "Mike Tyson is disqualified for biting Evander Holyfield", "date": "1997-06-28" },
+      { "id": "warriors-73", "text": "The Warriors clinch a record 73-win season", "date": "2016-04-13" },
+      { "id": "super-over", "text": "England win the Cricket World Cup by the barest of margins", "date": "2019-07-14" },
+      { "id": "hamilton-seven", "text": "Lewis Hamilton equals Schumacher's seven world titles", "date": "2020-11-15" },
+      { "id": "nadal-14", "text": "Rafael Nadal wins a 14th French Open title", "date": "2022-06-05" }
+    ]
+  }
+]
