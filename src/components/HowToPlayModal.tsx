@@ -42,9 +42,17 @@ export default function HowToPlayModal({ isOpen, onClose }: HowToPlayModalProps)
           ))}
         </div>
 
-        <p className="border-t border-neutral-200 pt-3 text-xs text-neutral-500">
-          A new puzzle drops every day at midnight. Win daily to build your 🔥 streak!
-        </p>
+        <div className="border-t border-neutral-200 pt-3 text-xs text-neutral-500">
+          <p className="mb-1">
+            <strong className="text-neutral-700">📅 Daily</strong> — one shared puzzle per day.
+            Win daily to build your 🔥 streak, and share your result grid.
+          </p>
+          <p>
+            <strong className="text-neutral-700">🎯 Free Play</strong> — unlimited random
+            puzzles. Earn <strong>500 / 400 / 300 / 200 / 100 points</strong> for wins in 1–5
+            guesses and chase your best run.
+          </p>
+        </div>
       </div>
     </Modal>
   );

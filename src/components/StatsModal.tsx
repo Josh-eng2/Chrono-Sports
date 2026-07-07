@@ -1,11 +1,12 @@
 import Modal from './Modal';
 import { MAX_GUESSES } from '../constants';
-import type { LifetimeStats } from '../types/game';
+import type { ArcadeStats, LifetimeStats } from '../types/game';
 
 interface StatsModalProps {
   isOpen: boolean;
   onClose: () => void;
   stats: LifetimeStats;
+  arcadeStats: ArcadeStats;
   displayStreak: number;
   /** Attempts used for a win recorded today — its bar gets highlighted */
   highlightAttempts: number | null;
@@ -15,6 +16,7 @@ export default function StatsModal({
   isOpen,
   onClose,
   stats,
+  arcadeStats,
   displayStreak,
   highlightAttempts,
 }: StatsModalProps) {
@@ -29,8 +31,22 @@ export default function StatsModal({
     { value: stats.maxStreak, label: 'Best streak' },
   ];
 
+  const arcadeWinPct =
+    arcadeStats.gamesPlayed > 0
+      ? Math.round((arcadeStats.gamesWon / arcadeStats.gamesPlayed) * 100)
+      : 0;
+  const arcadeTiles = [
+    { value: arcadeStats.totalPoints.toLocaleString('en-US'), label: 'Points' },
+    { value: arcadeStats.gamesPlayed, label: 'Rounds' },
+    { value: `${arcadeWinPct}%`, label: 'Win rate' },
+    { value: arcadeStats.bestRun, label: 'Best run' },
+  ];
+
   return (
     <Modal title="STATISTICS" isOpen={isOpen} onClose={onClose}>
+      <h3 className="mb-2 text-xs font-bold uppercase tracking-widest text-neutral-500">
+        📅 Daily
+      </h3>
       <div className="mb-5 grid grid-cols-4 gap-2 text-center">
         {tiles.map(({ value, label }) => (
           <div key={label} className="rounded-lg bg-neutral-100 px-1 py-3">
@@ -69,6 +85,20 @@ export default function StatsModal({
       <p className="mt-3 text-[11px] text-neutral-400">
         Wins by number of guesses (out of {MAX_GUESSES}).
       </p>
+
+      <h3 className="mb-2 mt-5 border-t border-neutral-200 pt-4 text-xs font-bold uppercase tracking-widest text-neutral-500">
+        🎯 Free Play
+      </h3>
+      <div className="grid grid-cols-4 gap-2 text-center">
+        {arcadeTiles.map(({ value, label }) => (
+          <div key={label} className="rounded-lg bg-neutral-100 px-1 py-3">
+            <p className="font-display text-3xl leading-none text-neutral-900">{value}</p>
+            <p className="mt-1 text-[10px] font-semibold uppercase tracking-wide text-neutral-500">
+              {label}
+            </p>
+          </div>
+        ))}
+      </div>
     </Modal>
   );
 }

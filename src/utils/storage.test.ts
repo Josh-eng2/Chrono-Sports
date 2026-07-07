@@ -2,14 +2,17 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   defaultStats,
   getDisplayStreak,
+  loadArcadeRound,
   loadDayState,
   loadStats,
   pruneOldDayStates,
+  recordArcadeResult,
   recordGameResult,
+  saveArcadeRound,
   saveDayState,
   saveStats,
 } from './storage';
-import type { DayState } from '../types/game';
+import type { ArcadeRoundSave, DayState } from '../types/game';
 
 /** Minimal in-memory localStorage so tests run in the plain node environment. */
 class MemoryStorage implements Storage {
@@ -113,6 +116,54 @@ describe('getDisplayStreak', () => {
   it('shows 0 when the streak has lapsed, even before a game is recorded', () => {
     const stats = { ...defaultStats(), currentStreak: 5, lastPlayedDate: '2026-07-01' };
     expect(getDisplayStreak(stats, '2026-07-07')).toBe(0);
+  });
+});
+
+describe('recordArcadeResult (Free Play)', () => {
+  it('awards points by attempts used', () => {
+    expect(recordArcadeResult(true, 1).pointsEarned).toBe(500);
+    expect(recordArcadeResult(true, 3).pointsEarned).toBe(300);
+    expect(recordArcadeResult(true, 5).pointsEarned).toBe(100);
+    expect(recordArcadeResult(false, 5).pointsEarned).toBe(0);
+    const { stats } = recordArcadeResult(true, 2);
+    expect(stats.totalPoints).toBe(500 + 300 + 100 + 0 + 400);
+    expect(stats.gamesPlayed).toBe(5);
+    expect(stats.gamesWon).toBe(4);
+  });
+
+  it('tracks consecutive-win runs and resets on a loss', () => {
+    recordArcadeResult(true, 1);
+    recordArcadeResult(true, 2);
+    let { stats } = recordArcadeResult(true, 3);
+    expect(stats.currentRun).toBe(3);
+    expect(stats.bestRun).toBe(3);
+    ({ stats } = recordArcadeResult(false, 5));
+    expect(stats.currentRun).toBe(0);
+    expect(stats.bestRun).toBe(3);
+    ({ stats } = recordArcadeResult(true, 1));
+    expect(stats.currentRun).toBe(1);
+    expect(stats.bestRun).toBe(3);
+  });
+});
+
+describe('arcade round persistence', () => {
+  it('round-trips a saved round', () => {
+    const round: ArcadeRoundSave = {
+      eventIds: ['a', 'b', 'c', 'd', 'e'],
+      currentOrder: ['b', 'a', 'c', 'e', 'd'],
+      guesses: [{ order: ['b', 'a', 'c', 'e', 'd'], feedback: ['close', 'close', 'correct', 'close', 'close'] }],
+      status: 'playing',
+    };
+    saveArcadeRound(round);
+    expect(loadArcadeRound()).toEqual(round);
+  });
+
+  it('returns null for missing or corrupt data', () => {
+    expect(loadArcadeRound()).toBeNull();
+    localStorage.setItem('chrono-sort-arcade-round', '{oops');
+    expect(loadArcadeRound()).toBeNull();
+    localStorage.setItem('chrono-sort-arcade-round', JSON.stringify({ eventIds: 'nope' }));
+    expect(loadArcadeRound()).toBeNull();
   });
 });
 

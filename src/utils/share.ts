@@ -11,6 +11,10 @@ import type { GuessRecord } from '../types/game';
  *   🟩🟩🟩🟩🟩
  *   https://chrono-sort-sports.com
  */
+function emojiRows(guesses: GuessRecord[]): string {
+  return guesses.map((g) => g.feedback.map((f) => FEEDBACK_EMOJI[f]).join('')).join('\n');
+}
+
 export function buildShareText(
   puzzleNumber: number,
   guesses: GuessRecord[],
@@ -19,10 +23,27 @@ export function buildShareText(
 ): string {
   const attempts = won ? String(guesses.length) : 'X';
   const streakBadge = won && streak > 1 ? ` · 🔥${streak}` : '';
-  const rows = guesses
-    .map((g) => g.feedback.map((f) => FEEDBACK_EMOJI[f]).join(''))
-    .join('\n');
-  return `${GAME_TITLE} #${puzzleNumber}\n⏱️ ${attempts}/${MAX_GUESSES}${streakBadge}\n${rows}\n${SHARE_URL}`;
+  return `${GAME_TITLE} #${puzzleNumber}\n⏱️ ${attempts}/${MAX_GUESSES}${streakBadge}\n${emojiRows(guesses)}\n${SHARE_URL}`;
+}
+
+/**
+ * Free Play share card, e.g.
+ *
+ *   Chrono-Sort: Sports — Free Play
+ *   🎯 +400 pts (2/5) · Total 3,750
+ *   🟨🟩⬛⬛🟨
+ *   🟩🟩🟩🟩🟩
+ *   https://josh-eng2.github.io/Chrono-Sports/
+ */
+export function buildArcadeShareText(
+  pointsEarned: number,
+  guesses: GuessRecord[],
+  won: boolean,
+  totalPoints: number,
+): string {
+  const attempts = won ? String(guesses.length) : 'X';
+  const total = totalPoints.toLocaleString('en-US');
+  return `${GAME_TITLE} — Free Play\n🎯 +${pointsEarned} pts (${attempts}/${MAX_GUESSES}) · Total ${total}\n${emojiRows(guesses)}\n${SHARE_URL}`;
 }
 
 export type ShareOutcome = 'shared' | 'copied' | 'failed';
